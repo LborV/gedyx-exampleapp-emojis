@@ -1,4 +1,4 @@
-import {emojisList} from "/src/emojisList.js";
+import {emojisList} from "/src/emojisList.min.js";
 import {Controller} from '/kernel/Controller.min.js';
 
 export default class emojisController extends Controller{
