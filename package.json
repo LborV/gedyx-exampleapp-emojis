@@ -1,0 +1,40 @@
+{
+  "name": "GEDYX",
+  "version": "0.0.1",
+  "description": "JS framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "npm run compile && node index.js",
+    "create:actions": "node scripts/makeAction.js",
+    "create:models": "node scripts/makeModels.js",
+    "create:cronJobs": "node scripts/makeCronJobs.js",
+    "create:middlewares": "node scripts/makeMiddlewares.js",
+    "create:memmoryStorage": "node scripts/makeMemmoryStorage.js",
+    "create:redisStorage": "node scripts/makeRedisStorage.js",
+    "create:migrationMySql": "node scripts/makeMigrationMySql.js",
+    "migrate:mysql": "node scripts/migrateMySql.js",
+    "compile:views": "node scripts/compileViews.js",
+    "compile:gulp": "node gulpfile.js",
+    "compile": "npm run compile:views && npm run compile:gulp"
+  },
+  "author": "LborV(Boris Djumajev)",
+  "license": "SEE LICENSE IN ../LICENSE",
+  "dependencies": {
+    "cron": "^1.8.2",
+    "mysql2": "^2.3.0",
+    "recursive-readdir": "^2.2.2",
+    "redis": "^3.1.2",
+    "socket.io": "^4.3.1",
+    "sqlstring": "^2.3.1"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-minify": "^3.1.0",
+    "mocha": "^8.2.1"
+  },
+  "engines": {
+    "node": ">=14.17.0"
+  }
+}

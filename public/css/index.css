@@ -1,0 +1,114 @@
+*, body {
+   padding: 0;
+   margin: 0; 
+}
+
+header {
+    display: block;
+    width:100%;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 150%;
+}
+
+#searchInput {
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#searchInput .random {
+    color: #ccc;
+    margin-left: -5em;
+    cursor: pointer;
+}
+
+#searchInput .random:hover {
+    color: #555;
+}
+
+#list {
+    margin-top: 10px;
+}
+
+#searchInput input {
+    border-radius: 4px;
+    border: 1px solid #bbb;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 18px;
+    padding: 10px 8px;
+    width: 90%;
+}
+
+.resultItem {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    height: 32px;
+    position: relative;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    cursor: pointer;
+}
+
+.resultItem:hover {
+    background-color: #eee;
+}
+
+.resultItem img {
+    width: 32px;
+    height: 32px;
+    padding-right: 10px;
+}
+
+.resultItem .title {
+    position: relative;
+    top: -8px;
+}
+
+.resultItem .info {
+    float: right;
+    position: relative;
+    top: 8px;
+    right: 10px;
+    color: #ccc;
+    display: none;
+}
+  
+.resultItem:hover .info {
+    display: inline-block;
+}
+
+#forkongithub {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+    background: #000;
+    margin-bottom: 100px;
+}
+
+#forkongithub a {
+    width: 100%;
+    display: block;
+    box-shadow: 4px 4px 10px rgb(0 0 0 / 80%);
+    color: #fff;
+    text-decoration: none;
+    font-family: arial, sans-serif;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 40px;
+    font-size: 1rem;
+    line-height:2rem;
+
+    border-width: .08em 0;
+    border-style: dashed;
+    border-color: #fff;
+    border-color: hsla(0,0%,100%,.7);
+}
+
+#forkongithub:hover {
+    background: #222;
+    font-weight: bold;
+}
