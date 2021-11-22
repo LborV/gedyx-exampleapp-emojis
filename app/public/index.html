@@ -5,21 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Manifest For PWA -->
-    <link rel="manifest" href="/pwa.json">
     <link rel="stylesheet" href="/css_min/index.css">
     <link rel="icon" href="/images/icons/icon.png">
-
-    <script>
-        if ("serviceWorker" in navigator) {
-            self.addEventListener("load", async () => {
-                const container = navigator.serviceWorker;
-                if (container.controller === null) {
-                    const reg = await container.register("./js/sw.js");
-                }
-            });
-        }
-    </script>
 </head>
 <body>
     <script src="/kernel/Application.min.js"></script>
