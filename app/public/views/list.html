@@ -1,0 +1,15 @@
+{f:_this.emojisToShow:emoji:
+    <div class="resultItem" onclick="app.getController('emojis').copyClipboard('{{emoji.symbol}}')">
+        <img 
+            src="{{_this.cdnUrl}}{{emoji.symbol.codePointAt(0).toString(16)}}.png" 
+            alt="{{emoji.title}}"
+            onerror="this.onerror=null; this.src='{{emoji.symbol}}'"
+        > 
+        <span class="title">
+            {{emoji.title}}
+        </span>
+        <span class="info">
+            Click to copy emoji
+        </span>
+    </div>
+:!}
