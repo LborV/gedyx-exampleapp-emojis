@@ -12,39 +12,18 @@ services:
         image: node
         volumes:
             - ./app:/app
-        command: bash -c "npm i && npm start '/socket/'"
+        command: bash -c "npm i && npm start"
 
     server_2:
         working_dir: /app
         image: node
         volumes:
             - ./app:/app
-        command: bash -c "npm i && npm start '/socket/'"
+        command: bash -c "npm i && npm start"
 
-    server_polling_1:
+    server_3:
         working_dir: /app
         image: node
         volumes:
             - ./app:/app
-        command: bash -c "npm i && npm start '/polling/'"
-
-    server_polling_2:
-        working_dir: /app
-        image: node
-        volumes:
-            - ./app:/app
-        command: bash -c "npm i && npm start '/polling/'"
-
-    redis:
-        image: 'bitnami/redis:latest'
-        environment:
-            - ALLOW_EMPTY_PASSWORD=yes
-
-    mysql_database:
-        image: mariadb:latest
-        command: --default-authentication-plugin=mysql_native_password
-        restart: always
-        volumes:
-          - ./docker/database.sql:/docker-entrypoint-initdb.d/database.sql
-        environment:
-            MYSQL_ROOT_PASSWORD: testRootPassword
+        command: bash -c "npm i && npm start"
