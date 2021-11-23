@@ -57,7 +57,7 @@ class Application {
         }
 
         try {
-            this.loadControllers()
+        this.loadControllers()
             // .then(() => this.startApplication())
             .then(() => {
                 window.onpopstate = (event) => this.changePath(event.target.location.href);

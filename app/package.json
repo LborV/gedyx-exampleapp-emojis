@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "start": "npm run compile && node index.js",
+    "start": "node index.js",
     "create:actions": "node scripts/makeAction.js",
+    "create:httpActions": "node scripts/makeHttpAction.js",
     "create:models": "node scripts/makeModels.js",
     "create:cronJobs": "node scripts/makeCronJobs.js",
     "create:middlewares": "node scripts/makeMiddlewares.js",
@@ -22,6 +23,7 @@
   "license": "SEE LICENSE IN ../LICENSE",
   "dependencies": {
     "cron": "^1.8.2",
+    "express": "^4.17.1",
     "mysql2": "^2.3.0",
     "recursive-readdir": "^2.2.2",
     "redis": "^3.1.2",
@@ -30,7 +32,6 @@
   },
   "devDependencies": {
     "gulp": "^4.0.2",
-    "gulp-clean-css": "^4.3.0",
     "gulp-minify": "^3.1.0",
     "mocha": "^8.2.1"
   },
