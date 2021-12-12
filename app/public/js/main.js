@@ -26,7 +26,7 @@ window.addEventListener('load', () => {
             path: '/socket/'
         },
         socketsURL: '',
-        useSession: true,
+        useSession: false,
         routing: routes,
         controllers: controllers
     });
