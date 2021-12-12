@@ -76,20 +76,20 @@ class Sessions {
 
                         this.sessions.get = async (sessionKey) => {
                             let result = await this.sessions
-                                .select('data')
+                                .select('data', 'sessionKey')
                                 .where('sessionKey', sessionKey)
                                 .execute();
 
-                            if(result[0] && result[0].data) {
+                            if(result[0] && result[0].sessionKey) {
                                 return result[0].data;
                             }
 
-                            return [];
+                            return undefined;
                         }
 
                         this.sessions.set = async (sessionKey, data) => {
                             let session = await this.sessions.get(sessionKey);
-                            if(!session || session.length == 0) {
+                            if(session === undefined) {
                                 return await this.sessions
                                     .insert({
                                         sessionKey: sessionKey,
@@ -113,6 +113,17 @@ class Sessions {
             default:
                 this.sessions = new MemoryStorage({connection: null});            
         }
+    }
+
+    async setValue(sessionKey, key, value) {
+        let session = await this.get(sessionKey);
+        session[key] = value;
+
+        return await this.set(sessionKey, session);
+    }
+
+    async set(sessionKey, data) {
+        return await this.sessions.set(sessionKey, data);
     }
 
     async get(sessionKey) {
@@ -140,7 +151,7 @@ class Sessions {
     }
 
     createSession() {
-        let sessionKey = Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        let sessionKey = Date.now() + '_' + Math.random().toString(36);
         let session = {
             liveTime: this.expiration,
             endDate: Date.now() + this.expiration,

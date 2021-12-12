@@ -5,11 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/css_min/index.css">
-    <link rel="icon" href="/images/icons/icon.png">
+  
+    <!-- Socket io CDN -->
+    <script src="https://cdn.socket.io/4.3.2/socket.io.min.js" integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs" crossorigin="anonymous"></script>
+
+    <!-- Manifest For PWA -->
+    <link rel="manifest" href="/pwa.json">
+
+    <link rel="stylesheet" href="/css/index.css">
+
+    <script>
+        if ("serviceWorker" in navigator) {
+            self.addEventListener("load", async () => {
+                const container = navigator.serviceWorker;
+                if (container.controller === null) {
+                    const reg = await container.register("./js/sw.js");
+                }
+            });
+        }
+    </script>
 </head>
 <body>
+    <script src="/js/routes.min.js"></script>
+    <script src="/js/controllers.min.js"></script>
     <script src="/kernel/Application.min.js"></script>
-    <script src="/js/main.js"></script>
+    <script src="/js/main.min.js"> </script>
 </body>
 </html>

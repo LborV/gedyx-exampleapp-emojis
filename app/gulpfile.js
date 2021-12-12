@@ -43,6 +43,21 @@ function minifyEmojis() {
     .pipe(dest('public/src/'));
 }
 
+function minifyClientConfiguration() {
+    return src([
+            'public/js/main.js',
+            'public/js/routes.js',
+            'public/js/controllers.js',
+        ])
+        .pipe(minify({
+            ext:{
+                src:'.js',
+                min:'.min.js'
+            }
+        }))
+        .pipe(dest('public/js/'));
+}
+
 function minifyCss() {
     return src([
         'public/css/index.css',
@@ -53,6 +68,7 @@ function minifyCss() {
 
 (async () => {
     minifyClientCore();
+    minifyClientConfiguration();
     minifyControllers();
     minifyEmojis();
     minifyCss();
