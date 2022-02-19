@@ -7,14 +7,14 @@
     "test": "mocha",
     "start": "node index.js",
     "create:actions": "node scripts/makeAction.js",
-    "create:httpactions": "node scripts/makeHttpAction.js",
+    "create:actions:http": "node scripts/makeHttpAction.js",
     "create:models": "node scripts/makeModels.js",
-    "create:cronJobs": "node scripts/makeCronJobs.js",
-    "create:controller": "node scripts/makeController.js",
+    "create:cronjobs": "node scripts/makeCronJobs.js",
+    "create:controllers": "node scripts/makeController.js",
     "create:middlewares": "node scripts/makeMiddlewares.js",
-    "create:memmorystorage": "node scripts/makeMemmoryStorage.js",
-    "create:redisStorage": "node scripts/makeRedisStorage.js",
-    "create:migrationmysql": "node scripts/makeMigrationMySql.js",
+    "create:models:memory": "node scripts/makeMemmoryStorage.js",
+    "create:models:redis": "node scripts/makeRedisStorage.js",
+    "create:migrations:mysql": "node scripts/makeMigrationMySql.js",
     "migrate:mysql": "node scripts/migrateMySql.js",
     "compile:views": "node scripts/compileViews.js",
     "compile:gulp": "node gulpfile.js",
@@ -24,17 +24,17 @@
   "license": "SEE LICENSE IN ../LICENSE",
   "dependencies": {
     "cron": "^1.8.2",
-    "express": "^4.17.1",
-    "mysql2": "^2.3.0",
+    "express": "^4.17.2",
+    "mysql2": "^2.3.3",
     "recursive-readdir": "^2.2.2",
     "redis": "^3.1.2",
-    "socket.io": "^4.3.1",
-    "sqlstring": "^2.3.1"
+    "sha1": "^1.1.1",
+    "socket.io": "^4.4.1",
+    "sqlstring": "^2.3.2"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-minify": "^3.1.0",
-    "gulp-clean-css": "^4.3.0",
     "mocha": "^8.2.1"
   },
   "engines": {

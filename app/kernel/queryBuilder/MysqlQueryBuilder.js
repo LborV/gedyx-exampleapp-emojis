@@ -14,6 +14,44 @@ class MysqlQueryBuilder extends QueryBuilder {
     setConnection(connection) {
         return this.connection = connection;
     } 
+    
+    async getConnection() {
+        return await this.connection.getConnection();
+    }
+
+    async startTransaction() {
+        let connection = await this.getConnection();
+        await this.executeRaw('START TRANSACTION;', connection);
+        return connection;
+    }
+
+    async commit(connection = null) {
+        let res = await this.executeRaw('COMMIT;', connection);
+        
+        if(connection !== null && typeof connection.release === 'function') {
+            await connection.release();
+        } else {
+            if(typeof this.connection.release === 'function') {
+                await this.connection.release();
+            }
+        }
+
+        return res;
+    }
+
+    async rollback(connection = null) {
+        let res = await this.executeRaw('ROLLBACK;', connection);
+        
+        if(connection !== null && typeof connection.release === 'function') {
+            await connection.release();
+        } else {
+            if(typeof this.connection.release === 'function') {
+                await this.connection.release();
+            }
+        }
+
+        return res;
+    }
 
     async execute(connection = null) {
         let res = [];
@@ -82,7 +120,11 @@ class MysqlQueryBuilder extends QueryBuilder {
                 }
     
                 if(typeof element === 'string') {
-                    sql += `\`${element}\`${delimiter} `;
+                    if((element.match(/\./g) || []).length === 1) {
+                        element = SqlString.escapeId(element);
+                    }
+
+                    sql += `${element}${delimiter} `;
                 } else if(typeof element === 'object' && element.raw) {
                     sql += `${element.value}${delimiter} `;
                 }
@@ -106,6 +148,14 @@ class MysqlQueryBuilder extends QueryBuilder {
         }
 
         sql += this.makeWhere(obj);
+
+        if(this.queryObject.forUpdate) {
+            sql += 'FOR UPDATE ';
+        }
+
+        if(this.queryObject.forShare) {
+            sql += 'FOR SHARE ';
+        }
 
         if(obj.union) {
             sql += 'UNION ';
@@ -132,7 +182,11 @@ class MysqlQueryBuilder extends QueryBuilder {
         }
 
         if(obj.limit) {
-            sql += `LIMIT ${obj.limit} `;
+            if(typeof obj.limit.offset === 'number') {
+                sql += `LIMIT ${obj.limit.limit} OFFSET ${obj.limit.offset} `;
+            } else {
+                sql += `LIMIT ${obj.limit.limit} `;
+            }
         } 
 
         if(subWhere) {
@@ -170,7 +224,13 @@ class MysqlQueryBuilder extends QueryBuilder {
                     this.isJoin = isJoinSave;
                 } else {
                     where.a1 = SqlString.escapeId(where.a1);
-                    where.a2 = this.escape(where.a2);
+
+                    if(typeof where.a2 === 'string' && (where.a2.match(/\./g) || []).length === 1) {
+                        where.a2 = SqlString.escapeId(where.a2);
+                    } else if(where.operator !== 'IN') {
+                        where.a2 = this.escape(where.a2);
+                    }
+
                     sql += `${where.a1} ${where.operator} ${where.a2} `;
                 }
 
