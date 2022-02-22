@@ -22,6 +22,5 @@
     "background_color": "#FFFFFF",
     "theme_color": "#FFFFFF",
     "display": "standalone",
-    "start_url": "./",
-    "scope": "."
+    "start_url": "https://emojis.jsmvca.xyz/js"
   }
